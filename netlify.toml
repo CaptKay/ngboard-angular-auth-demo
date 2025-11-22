@@ -1,6 +1,6 @@
 [build]
   command = "ng build --configuration production"
-  publish = "dist/ngboard-angular-auth-demo"
+  publish = "dist/ngboard"
 
 [[redirects]]
   from = "/*"
