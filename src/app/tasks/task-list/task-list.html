@@ -1,0 +1,21 @@
+<ul class="task-list">
+    @for (task of tasks(); track task.id) {
+    <li class="task-list__item" appTaskHover [class.task-list__item--active]="task.id === selectedTaskId()" (click)="selectTask(task)"
+        (dblclick)="toggleTask(task)">
+        <div class="task-list__main">
+            <h3>{{task.title}}</h3>
+            <p>{{task.description}}</p>
+        </div>
+        <div class="task-list__meta">
+            <app-task-status-badge [status]="task.status"></app-task-status-badge>
+            <a class="task-list__link" [routerLink]="['/tasks', task.id]" (click)="$event.stopPropagation()">Open</a>
+            <button type="button" (click)="deleteTask(task, $event)">Delete</button>
+        </div>
+
+    </li>
+    }@empty {
+    <li class="task-list__empty">
+        No tasks yet.
+    </li>
+    }
+</ul>

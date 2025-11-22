@@ -1,0 +1,25 @@
+<div class="dashboard-grid">
+  <section>
+    <h3>Tasks</h3>
+    <button type="button" (click)="loadTasks()">Refresh</button>
+    <app-task-filter-bar [currentFilter]="filter()" (filterChange)="setFilter($event)" />
+    <app-task-form (taskCreated)="handleTaskCreated($event)" />
+    @if (isLoading()) {
+    <p>Loading tasks..</p>
+    }@else if(error()){
+    <div class="error">
+      <p>{{ error() }}</p>
+      <button type="button" (click)="loadTasks()">Retry</button>
+    </div>
+    }@else {
+
+    <app-task-list [tasks]="filteredTasks()" [selectedTaskId]="selectedTask()?.id ?? null"
+      (taskSelected)="handleTaskSelected($event)" (taskToggled)="handleTaskToggled($event)"
+      (taskDeleted)="handleTaskDelete($event)"></app-task-list>
+    }
+  </section>
+  <section>
+    <h3>Selected Task</h3>
+    <app-task-detail [task]="selectedTask()"></app-task-detail>
+  </section>
+</div>

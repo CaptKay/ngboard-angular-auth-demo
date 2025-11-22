@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="login-page__card">
+    <h2>Sign in</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+
+        @if (email?.touched && email?.invalid) {
+          <p class="error">
+            @if (email?.errors?.['required']) {
+              Email is required.
+            } @else if (email?.errors?.['email']) {
+              Enter a valid email.
+            }
+          </p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+
+        @if (password?.touched && password?.invalid) {
+          <p class="error">
+            @if (password?.errors?.['required']) {
+              Password is required.
+            } @else if (password?.errors?.['minlength']) {
+              Password must be at least 6 characters.
+            }
+          </p>
+        }
+      </div>
+
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" [disabled]="form.invalid || isLoading">
+        @if (isLoading) { Signing in… } @else { Sign in }
+      </button>
+
+      <p class="hint">
+         This is a demo app. Use the shared credentials from the README / LinkedIn post
+        to sign in as <strong>admin</strong> or <strong>user</strong>.
+        <br>
+        email: admin@ngboard-demo.com  | 
+        password: admin@ngboard
+        <br>
+        email: user@ngboard-demo.com |
+        password: user@ngboard
+        <!-- Don’t have an account yet? -->
+        <!-- <a routerLink="/register">Sign up</a> -->
+      </p>
+    </form>
+  </div>
+</div>

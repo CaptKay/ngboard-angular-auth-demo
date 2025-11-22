@@ -1,0 +1,30 @@
+<div class="filters">
+    <button
+    type="button"
+    (click)="setFilter('all')"
+    [class.active]="currentFilter === 'all'"
+    >
+        Show all
+    </button>
+    <button
+    type="button"
+    (click)="setFilter('done')"
+    [class.active]="currentFilter === 'done'"
+    >
+        Show done
+    </button>
+    <button
+    type="button"
+    (click)="setFilter('in-progress')"
+    [class.active]="currentFilter === 'in-progress'"
+    >
+        Show in progress
+    </button>
+    <button
+    type="button"
+    (click)="setFilter('todo')"
+    [class.active]="currentFilter === 'todo'"
+    >
+        Show Todos
+    </button>
+</div>

@@ -1,0 +1,10 @@
+@if (!task()) {
+    <p>Select a task to see details.</p>
+}@else {
+    <article class="task-detail">
+        <h3>{{task()!.title}}</h3>
+        <p>{{task()!.description}}</p>
+        <p><strong>Status:</strong> {{task()!.status | taskStatusLabel}}</p>
+         <!-- <app-task-status-badge [status]="task.status" /> -->
+    </article>
+}

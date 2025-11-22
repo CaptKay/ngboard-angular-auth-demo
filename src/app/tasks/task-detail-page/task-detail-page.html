@@ -1,0 +1,17 @@
+<a  class="back-link" (click)="goBack()">← Back to tasks</a>
+
+<h2>Task details</h2>
+
+@if (isLoading()) {
+    <p>Loading task...</p>
+}@else if (error()) {
+<p class="error">{{error()}}</p>
+}@else if (task()) {
+    <article class="task-card">
+        <h3>#{{ task()!.id}} - {{  task()!.title}} </h3>
+        <p> {{ task()!.description }} </p>
+        <p>Status: {{  task()!.status  }} </p>
+    </article>
+}@else {
+    <p>No task found.</p>
+}
